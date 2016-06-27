@@ -5,7 +5,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlert" customModule="ProgressAlert" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAlert" customModule="ProgressAlert" customModuleProvider="target">
+            <connections>
+                <outlet property="button" destination="Ie1-1w-AXn" id="RFk-hG-p5B"/>
+                <outlet property="label" destination="a3N-ZB-s4l" id="z0d-aH-Pdz"/>
+                <outlet property="progress" destination="Zze-Ti-wju" id="qra-JF-Vmb"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="240" height="150"/>
@@ -21,11 +27,14 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zze-Ti-wju">
+                    <rect key="frame" x="45" y="74" width="150" height="2"/>
+                </progressView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="405" y="304"/>
+            <point key="canvasLocation" x="204" y="290"/>
         </view>
     </objects>
 </document>

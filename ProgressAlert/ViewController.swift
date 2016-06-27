@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     weak var timer : NSTimer?
     weak var customUI : UIView?
+    weak var buttonUI : UIButton?
     var destroyCount : Int?
 
     override func viewDidLoad() {
@@ -30,20 +31,29 @@ class ViewController: UIViewController {
         myButton.layer.cornerRadius = 10
         myButton.layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         myButton.addTarget(self, action: #selector(ViewController.onClickMyButton(_:)), forControlEvents: .TouchUpInside)
+        buttonUI = myButton
         //ButtonをViewに追加
-        self.view.addSubview(myButton)
+        self.view.addSubview(buttonUI!)
                 
         //NSTimer
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
     }
     
     func onClickMyButton(sender : UIButton){
+        sender.enabled = false;
         //Custom Alert Process
         let cUI = CustomAlert()
+        cUI.addUI(view)
         //位置を管理可能にしている
         cUI.getCustomUI().layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        view.addSubview(cUI)
-        customUI = cUI
+        customUI = cUI.getCustomUI()
+        view.addSubview(customUI!)
+        
+        cUI.getButton().addTarget(self, action: #selector(ViewController.CustomUIButton(_:)), forControlEvents: .TouchUpInside)
+    }
+    
+    func CustomUIButton(sender : UIButton){
+        print("button")
     }
     
     func update(timer: NSTimer){
@@ -52,6 +62,7 @@ class ViewController: UIViewController {
             if(self.destroyCount > 3){
                 customUI?.removeFromSuperview()
                 destroyCount = 0
+                buttonUI!.enabled = true
             }
         }
     }
