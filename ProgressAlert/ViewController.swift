@@ -24,10 +24,10 @@ class ViewController: UIViewController {
         //Buttonの設定
         let myButton = UIButton()
         myButton.frame = CGRectMake(0, 0, 200, 40)
-        myButton.backgroundColor = UIColor.redColor()
+        //myButton.backgroundColor = UIColor.redColor()
         myButton.layer.masksToBounds = true
         myButton.setTitle("UIAlertを発動", forState: UIControlState.Normal)
-        myButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        myButton.setTitleColor(UIColor.cyanColor(), forState: UIControlState.Normal)
         myButton.layer.cornerRadius = 10
         myButton.layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
         myButton.addTarget(self, action: #selector(ViewController.onClickMyButton(_:)), forControlEvents: .TouchUpInside)
@@ -42,29 +42,25 @@ class ViewController: UIViewController {
     func onClickMyButton(sender : UIButton){
         sender.enabled = false;
         //Custom Alert Process
-        let cUI = CustomAlert()
-        cUI.addUI(view)
+        let alertUI = CustomAlert()
+        alertUI.uiSettings(view)
         //位置を管理可能にしている
-        cUI.getCustomUI().layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        customUI = cUI.getCustomUI()
+        alertUI.getCustomUI().layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+        customUI = alertUI.getCustomUI()
         view.addSubview(customUI!)
         
-        cUI.getButton().addTarget(self, action: #selector(ViewController.CustomUIButton(_:)), forControlEvents: .TouchUpInside)
+        alertUI.getButton().addTarget(self, action: #selector(CustomUIButton(_:)), forControlEvents: .TouchUpInside)
+        alertUI.getLabel().text = "Test"
+        alertUI.getButton().setTitle("OK", forState: UIControlState.Normal)
     }
     
-    func CustomUIButton(sender : UIButton){
-        print("button")
+    func CustomUIButton(sender : AnyObject){
+        customUI?.removeFromSuperview()
+        buttonUI!.enabled = true
     }
     
     func update(timer: NSTimer){
-        if(self.customUI != nil){
-            self.destroyCount = self.destroyCount! + 1
-            if(self.destroyCount > 3){
-                customUI?.removeFromSuperview()
-                destroyCount = 0
-                buttonUI!.enabled = true
-            }
-        }
+        
     }
 
     override func didReceiveMemoryWarning() {

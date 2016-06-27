@@ -11,7 +11,7 @@ import UIKit
 class CustomAlert : UIView {
     
     //自身
-    weak var customUI : UIView?
+    weak var customUI : UIVisualEffectView?
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var progress: UIProgressView!
@@ -22,6 +22,7 @@ class CustomAlert : UIView {
     func getProgress() -> UIProgressView{ return progress! }
     func getCustomUI() -> UIView{ return customUI! }
     
+    //必須initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -30,9 +31,10 @@ class CustomAlert : UIView {
         super.init(coder: aDecoder)
     }
     
-    func addUI(view : UIView) {
+    //uiの設定
+    func uiSettings(view : UIView) {
         // XIB読み込み
-        customUI = NSBundle.mainBundle().loadNibNamed("CustomAlert", owner: self, options: nil).first as? UIView
+        customUI = NSBundle.mainBundle().loadNibNamed("CustomAlert", owner: self, options: nil).first as? UIVisualEffectView
         //view.layer.position = CGPoint(x: view.frame.maxX/2, y: view.frame.maxY/2)
         //丸みをもたす
         customUI!.layer.cornerRadius = 10
