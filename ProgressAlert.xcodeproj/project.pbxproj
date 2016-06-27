@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9615F4781D21B0270066BAF2 /* iosbackground.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9615F4771D21B0270066BAF2 /* iosbackground.jpeg */; };
 		961892AC1D1DE80800560C7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961892AB1D1DE80800560C7A /* AppDelegate.swift */; };
 		961892AE1D1DE80800560C7A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961892AD1D1DE80800560C7A /* ViewController.swift */; };
 		961892B11D1DE80800560C7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961892AF1D1DE80800560C7A /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9615F4771D21B0270066BAF2 /* iosbackground.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iosbackground.jpeg; sourceTree = "<group>"; };
 		961892A81D1DE80800560C7A /* ProgressAlert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressAlert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		961892AB1D1DE80800560C7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		961892AD1D1DE80800560C7A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				961892B21D1DE80800560C7A /* Assets.xcassets */,
 				961892B41D1DE80800560C7A /* LaunchScreen.storyboard */,
 				961892B71D1DE80800560C7A /* Info.plist */,
+				9615F4771D21B0270066BAF2 /* iosbackground.jpeg */,
 			);
 			path = ProgressAlert;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9615F4781D21B0270066BAF2 /* iosbackground.jpeg in Resources */,
 				961892B61D1DE80800560C7A /* LaunchScreen.storyboard in Resources */,
 				961892B31D1DE80800560C7A /* Assets.xcassets in Resources */,
 				961892B11D1DE80800560C7A /* Main.storyboard in Resources */,

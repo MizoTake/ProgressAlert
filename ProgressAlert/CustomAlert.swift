@@ -51,6 +51,8 @@ class CustomAlert : UIView {
         customUI = NSBundle.mainBundle().loadNibNamed("CustomAlert", owner: self, options: nil).first as? UIVisualEffectView
         //丸みをもたす
         customUI!.layer.cornerRadius = 10
+        //丸角を許可する
+        customUI!.clipsToBounds = true
         //影をつける
         customUI!.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         //影の濃さ

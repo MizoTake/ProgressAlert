@@ -16,15 +16,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.¥
-        //NSTimer 繰り返すメソッドを決める
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
+        
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "iosbackground.jpeg")?.drawInRect(self.view.bounds)
+        let image: UIImage! = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.view.backgroundColor = UIColor(patternImage: image)
+        
+        //一定時間後に処理を行う
+        let delay = 1 * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            //NSTimer 繰り返すメソッドを決める
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
+        })
     }
     
     func instanceCustomView(){
         //Custom Alert Process
         let alertUI = CustomAlert()
         alertUI.uiSettings(view)
-        //位置を管理可能にしている
+        //位置をランダムで決定する
         let w = arc4random_uniform(UInt32(self.view.frame.width))
         let h = arc4random_uniform(UInt32(self.view.frame.height))
         alertUI.getCustomUI().layer.position = CGPoint(x: CGFloat(w), y: CGFloat(h))
@@ -33,12 +45,13 @@ class ViewController: UIViewController {
         view.addSubview(customUI!)
         //setup
         alertUI.getButton().addTarget(self, action: #selector(CustomUIButton(_:)), forControlEvents: .TouchUpInside)
-        alertUI.getLabel().text = "Test"
-        alertUI.getButton().setTitle("OK", forState: UIControlState.Normal)
+        alertUI.getLabel().text = "Warning!!"
+        //alertUI.getLabel().textColor = UIColor.yellowColor()
+        alertUI.getButton().setTitle("Cancel", forState: UIControlState.Normal)
     }
     
     func CustomUIButton(sender : AnyObject){
-        customUI?.removeFromSuperview()
+        //customUI?.removeFromSuperview()
     }
     
     func update(timer: NSTimer){
