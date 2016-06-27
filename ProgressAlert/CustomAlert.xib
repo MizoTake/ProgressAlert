@@ -30,7 +30,7 @@
                         <rect key="frame" x="97" y="112" width="46" height="30"/>
                         <state key="normal" title="Button"/>
                     </button>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zze-Ti-wju">
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zze-Ti-wju">
                         <rect key="frame" x="45" y="74" width="150" height="2"/>
                     </progressView>
                 </subviews>

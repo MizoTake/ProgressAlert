@@ -16,6 +16,16 @@ class CustomAlert : UIView {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var progress: UIProgressView!
     
+    weak var timer : NSTimer?
+    var destroyCount : Int?
+    var progressPar : Float? = 0.0 {
+        didSet{
+            if(progressPar >= 1.5){
+                customUI?.removeFromSuperview()
+            }
+        }
+    }
+    
     //ゲッター
     func getButton() -> UIButton{ return button! }
     func getLabel() -> UILabel{ return label! }
@@ -25,23 +35,34 @@ class CustomAlert : UIView {
     //必須initialize
     override init(frame: CGRect) {
         super.init(frame: frame)
+        progressPar = 0.0
+        //NSTimer
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        //NSTimer
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
     }
     
     //uiの設定
     func uiSettings(view : UIView) {
         // XIB読み込み
         customUI = NSBundle.mainBundle().loadNibNamed("CustomAlert", owner: self, options: nil).first as? UIVisualEffectView
-        //view.layer.position = CGPoint(x: view.frame.maxX/2, y: view.frame.maxY/2)
         //丸みをもたす
         customUI!.layer.cornerRadius = 10
         //影をつける
         customUI!.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         //影の濃さ
         customUI!.layer.shadowOpacity = 0.1
+    }
+    
+    func update(timer: NSTimer){
+        if(progress != nil){
+            progress.setProgress(progressPar!, animated: true)
+            progressPar = progressPar! + Float(0.15)
+        }
     }
     
 }

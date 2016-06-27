@@ -10,9 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    weak var timer : NSTimer?
     weak var customUI : UIView?
     weak var buttonUI : UIButton?
+    weak var timer : NSTimer?
     var destroyCount : Int?
 
     override func viewDidLoad() {
@@ -24,7 +24,6 @@ class ViewController: UIViewController {
         //Buttonの設定
         let myButton = UIButton()
         myButton.frame = CGRectMake(0, 0, 200, 40)
-        //myButton.backgroundColor = UIColor.redColor()
         myButton.layer.masksToBounds = true
         myButton.setTitle("UIAlertを発動", forState: UIControlState.Normal)
         myButton.setTitleColor(UIColor.cyanColor(), forState: UIControlState.Normal)
@@ -60,7 +59,7 @@ class ViewController: UIViewController {
     }
     
     func update(timer: NSTimer){
-        
+
     }
 
     override func didReceiveMemoryWarning() {
