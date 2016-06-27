@@ -11,43 +11,27 @@ import UIKit
 class ViewController: UIViewController {
     
     weak var customUI : UIView?
-    weak var buttonUI : UIButton?
     weak var timer : NSTimer?
-    var destroyCount : Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        destroyCount = 0
-        
-        //Buttonの設定
-        let myButton = UIButton()
-        myButton.frame = CGRectMake(0, 0, 200, 40)
-        myButton.layer.masksToBounds = true
-        myButton.setTitle("UIAlertを発動", forState: UIControlState.Normal)
-        myButton.setTitleColor(UIColor.cyanColor(), forState: UIControlState.Normal)
-        myButton.layer.cornerRadius = 10
-        myButton.layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-        myButton.addTarget(self, action: #selector(ViewController.onClickMyButton(_:)), forControlEvents: .TouchUpInside)
-        buttonUI = myButton
-        //ButtonをViewに追加
-        self.view.addSubview(buttonUI!)
-                
-        //NSTimer
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
+        // Do any additional setup after loading the view, typically from a nib.¥
+        //NSTimer 繰り返すメソッドを決める
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
     }
     
-    func onClickMyButton(sender : UIButton){
-        sender.enabled = false;
+    func instanceCustomView(){
         //Custom Alert Process
         let alertUI = CustomAlert()
         alertUI.uiSettings(view)
         //位置を管理可能にしている
-        alertUI.getCustomUI().layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+        let w = arc4random_uniform(UInt32(self.view.frame.width))
+        let h = arc4random_uniform(UInt32(self.view.frame.height))
+        alertUI.getCustomUI().layer.position = CGPoint(x: CGFloat(w), y: CGFloat(h))
         customUI = alertUI.getCustomUI()
+        //表示
         view.addSubview(customUI!)
-        
+        //setup
         alertUI.getButton().addTarget(self, action: #selector(CustomUIButton(_:)), forControlEvents: .TouchUpInside)
         alertUI.getLabel().text = "Test"
         alertUI.getButton().setTitle("OK", forState: UIControlState.Normal)
@@ -55,11 +39,10 @@ class ViewController: UIViewController {
     
     func CustomUIButton(sender : AnyObject){
         customUI?.removeFromSuperview()
-        buttonUI!.enabled = true
     }
     
     func update(timer: NSTimer){
-
+        instanceCustomView()
     }
 
     override func didReceiveMemoryWarning() {

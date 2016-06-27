@@ -17,7 +17,6 @@ class CustomAlert : UIView {
     @IBOutlet weak var progress: UIProgressView!
     
     weak var timer : NSTimer?
-    var destroyCount : Int?
     var progressPar : Float? = 0.0 {
         didSet{
             if(progressPar >= 1.5){
