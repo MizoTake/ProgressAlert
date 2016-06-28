@@ -12,6 +12,7 @@ class CustomAlert : UIView {
     
     //自身
     weak var customUI : UIVisualEffectView?
+    weak var viewControll : ViewController?
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var progress: UIProgressView!
@@ -20,7 +21,7 @@ class CustomAlert : UIView {
     var progressPar : Float? = 0.0 {
         didSet{
             if(progressPar >= 1.5){
-                customUI?.removeFromSuperview()
+                viewControll!.CustomUIButton(button)
             }
         }
     }
@@ -31,6 +32,8 @@ class CustomAlert : UIView {
     func getLabel() -> UILabel{ return label! }
     func getProgress() -> UIProgressView{ return progress! }
     func getCustomUI() -> UIView{ return customUI! }
+    //セッター
+    func setVC(vc : ViewController){ viewControll = vc }
     
     //必須initialize
     override init(frame: CGRect) {

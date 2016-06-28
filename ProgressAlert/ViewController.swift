@@ -47,6 +47,7 @@ class ViewController: UIViewController {
         alertUI.getButton().addTarget(self, action: #selector(CustomUIButton(_:)), forControlEvents: .TouchUpInside)
         alertUI.getLabel().text = "Warning!!"
         alertUI.getButton().setTitle("Cancel", forState: UIControlState.Normal)
+        alertUI.setVC(self)
     }
     
     func CustomUIButton(sender : AnyObject){
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
             if(sender.isEqual(ui.getButton())){
                 uis.removeAtIndex(cnt)
                 ui.getCustomUI().removeFromSuperview()
+                print("\(uis.count)")
                 break
             }
             cnt += 1
