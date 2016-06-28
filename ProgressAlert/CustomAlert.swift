@@ -24,6 +24,7 @@ class CustomAlert : UIView {
             }
         }
     }
+    var increasesPar : Float? = 0.0
     
     //ゲッター
     func getButton() -> UIButton{ return button! }
@@ -35,6 +36,7 @@ class CustomAlert : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         progressPar = 0.0
+        increasesPar = Float(arc4random_uniform(10) + 1)/100.0
         //NSTimer
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
     }
@@ -62,7 +64,7 @@ class CustomAlert : UIView {
     func update(timer: NSTimer){
         if(progress != nil){
             progress.setProgress(progressPar!, animated: true)
-            progressPar = progressPar! + Float(0.15)
+            progressPar = progressPar! + Float(increasesPar!)
         }
     }
     

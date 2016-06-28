@@ -10,8 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    weak var customUI : UIView?
     weak var timer : NSTimer?
+    var uis : Array<CustomAlert> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), {
             //NSTimer 繰り返すメソッドを決める
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
         })
     }
     
@@ -40,18 +40,25 @@ class ViewController: UIViewController {
         let w = arc4random_uniform(UInt32(self.view.frame.width))
         let h = arc4random_uniform(UInt32(self.view.frame.height))
         alertUI.getCustomUI().layer.position = CGPoint(x: CGFloat(w), y: CGFloat(h))
-        customUI = alertUI.getCustomUI()
+        uis += [alertUI]
         //表示
-        view.addSubview(customUI!)
+        view.addSubview(uis[uis.count - 1].getCustomUI())
         //setup
         alertUI.getButton().addTarget(self, action: #selector(CustomUIButton(_:)), forControlEvents: .TouchUpInside)
         alertUI.getLabel().text = "Warning!!"
-        //alertUI.getLabel().textColor = UIColor.yellowColor()
         alertUI.getButton().setTitle("Cancel", forState: UIControlState.Normal)
     }
     
     func CustomUIButton(sender : AnyObject){
-        //customUI?.removeFromSuperview()
+        var cnt = 0
+        for ui in uis {
+            if(sender.isEqual(ui.getButton())){
+                uis.removeAtIndex(cnt)
+                ui.getCustomUI().removeFromSuperview()
+                break
+            }
+            cnt += 1
+        }
     }
     
     func update(timer: NSTimer){

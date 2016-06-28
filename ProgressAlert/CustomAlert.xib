@@ -36,7 +36,7 @@
                 </subviews>
             </view>
             <blurEffect style="light"/>
-            <point key="canvasLocation" x="175" y="264"/>
+            <point key="canvasLocation" x="160" y="171"/>
         </visualEffectView>
     </objects>
 </document>
