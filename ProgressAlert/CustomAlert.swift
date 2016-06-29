@@ -62,6 +62,9 @@ class CustomAlert : UIView {
         customUI!.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         //影の濃さ
         customUI!.layer.shadowOpacity = 0.1
+        
+        //button!.layer.cornerRadius = 10
+        //button!.clipsToBounds = true
     }
     
     func update(timer: NSTimer){

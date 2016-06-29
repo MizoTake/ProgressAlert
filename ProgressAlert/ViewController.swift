@@ -24,11 +24,11 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(patternImage: image)
         
         //一定時間後に処理を行う
-        let delay = 1 * Double(NSEC_PER_SEC)
+        let delay = 15 * Double(NSEC_PER_SEC)
         let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), {
             //NSTimer 繰り返すメソッドを決める
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ViewController.update(_:)), userInfo: nil, repeats: true)
         })
     }
     
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         alertUI.uiSettings(view)
         //位置をランダムで決定する
         let w = arc4random_uniform(UInt32(self.view.frame.width))
-        let h = arc4random_uniform(UInt32(self.view.frame.height))
+        let h = arc4random_uniform(UInt32(self.view.frame.height - 60))
         alertUI.getCustomUI().layer.position = CGPoint(x: CGFloat(w), y: CGFloat(h))
         uis += [alertUI]
         //表示
@@ -56,7 +56,6 @@ class ViewController: UIViewController {
             if(sender.isEqual(ui.getButton())){
                 uis.removeAtIndex(cnt)
                 ui.getCustomUI().removeFromSuperview()
-                print("\(uis.count)")
                 break
             }
             cnt += 1
