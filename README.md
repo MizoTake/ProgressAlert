@@ -1,0 +1,5 @@
+# ProgressAlert
+Swift
+
+映画とかでハッキングされると出そうな画面のUIを作ってみました。
+ProgressViewが満タンになるとポップアップが消えます。また、Cancelボタンを押しても消えます。
